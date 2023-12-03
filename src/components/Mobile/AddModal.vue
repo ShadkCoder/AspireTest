@@ -4,45 +4,40 @@
       <input
         v-model="cardname"
         placeholder="Card Name"
-        :class="{ cardname: true, errorname: this.errorname }"
+        :class="{ cardname: true, errorname: errorname }"
       />
       <button class="addbtn" @click="addCard">Add Card</button>
     </div>
   </div>
 </template>
 
-<script>
-import { mapGetters } from "vuex";
-export default {
-  name: "AddModal",
-  data() {
-    return {
-      cardname: "",
-      errorname: false,
-    };
-  },
-  methods: {
-    addCard() {
-      if (this.cardname != "") {
-        this.$store.commit("toggleAddModal", false);
-        let pushCard = {};
-        pushCard.Name = this.cardname;
-        pushCard.cardNo = Math.random().toFixed(16).split(".")[1].toString();
-        pushCard.cvv = Math.random().toFixed(3).split(".")[1];
-        pushCard.uid = this.getList.length;
-        this.$store.commit("updateUids", pushCard.uid);
-        pushCard.expiry = "12/27";
-        this.$store.commit("updateList", pushCard);
-      } else {
-        this.errorname = true;
-      }
-    },
-  },
-  computed: {
-    ...mapGetters({
-      getList: "getList",
-    }),
-  },
+<script setup lang="ts">
+import { onMounted, computed, ref } from "vue";
+import { useStore } from "vuex";
+
+const store = useStore();
+
+const cardname = ref<string>("");
+const errorname = ref<boolean>(false);
+
+const getList = computed(() => {
+  return store.getters.getList;
+});
+
+const addCard = () => {
+  if (cardname.value != "") {
+    store.commit("toggleAddModal", false);
+    let pushCard = {};
+    pushCard.Name = cardname.value;
+    pushCard.cardNo = Math.random().toFixed(16).split(".")[1].toString();
+    pushCard.cvv = Math.random().toFixed(3).split(".")[1];
+    pushCard.uid = getList.value.length;
+    store.commit("updateUids", pushCard.uid);
+    pushCard.expiry = "12/27";
+    store.commit("updateList", pushCard);
+  } else {
+    errorname.value = true;
+  }
 };
 </script>
 <style>

@@ -16,7 +16,7 @@
       </div>
       <div class="aspire-flex cd-expiry">
         <div class="cd-thru">
-          <span>thru : </span>
+          <span>Thru : </span>
           <span>{{ cardInfo.idx.expiry }}</span>
         </div>
         <div class="cd-cvv">
@@ -33,7 +33,7 @@
 
 <script setup lang="ts">
 import { onMounted, computed, ref } from "vue";
-import { mapGetters, useStore } from "vuex";
+import { useStore } from "vuex";
 
 const props = defineProps<{
   details?: Object;
@@ -79,7 +79,7 @@ const checkFrozen = computed(() => {
   font-size: 22px;
   text-align: left;
   padding-top: 20px;
-  padding-bottom: 18px;
+  padding-bottom: 16px;
 }
 .cd-inner {
   width: 100%;
@@ -104,6 +104,9 @@ const checkFrozen = computed(() => {
 }
 .cd-vendor {
   text-align: right;
+  position: absolute;
+  right: 22px;
+  bottom: 4px;
 }
 .cd-star {
   position: relative;
@@ -125,11 +128,11 @@ const checkFrozen = computed(() => {
   font-weight: 600;
   position: absolute;
   right: 10px;
-  top: -23px;
+  top: -25px;
   border-top-left-radius: 4px;
-  z-index: 20px;
+  z-index: 20;
   border-top-right-radius: 4px;
-  padding: 1px 6px 3px;
+  padding: 1px 6px 2px;
 }
 .flicking-panel.frozen > .cd-showcard {
   color: #cfcfcf;

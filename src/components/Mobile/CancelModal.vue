@@ -10,24 +10,19 @@
   </div>
 </template>
 
-<script>
-import { mapGetters } from "vuex";
-export default {
-  name: "CancelModal",
-  data() {
-    return {};
-  },
-  methods: {
-    cancelCard() {
-      this.$store.commit("cancelCard");
-      this.$store.commit("toggleCancel", false);
-    },
-  },
-  computed: {
-    ...mapGetters({
-      getUids: "getUids",
-    }),
-  },
+<script setup lang="ts">
+import { onMounted, computed, ref } from "vue";
+import { useStore } from "vuex";
+
+const store = useStore();
+
+const getUids = computed(() => {
+  return store.getters.getUids;
+});
+
+const cancelCard = () => {
+  store.commit("cancelCard");
+  store.commit("toggleCancel", false);
 };
 </script>
 <style>

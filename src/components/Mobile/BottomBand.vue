@@ -1,33 +1,29 @@
 <template>
   <div class="bb-parent aspire-flex">
     <div class="bb-cell">
-      <img src="../../../assets/Logo-grey.svg" />
+      <img src="../../assets/Logo-grey.svg" />
       <div class="bb-text">Home</div>
     </div>
     <div class="bb-cell active">
-      <img src="../../../assets/pay.svg" />
+      <img src="../../assets/pay.svg" />
       <div class="bb-text">Cards</div>
     </div>
     <div class="bb-cell">
-      <img src="../../../assets/Payments.svg" />
+      <img src="../../assets/Payments.svg" />
       <div class="bb-text">Payments</div>
     </div>
     <div class="bb-cell">
-      <img src="../../../assets/Credit.svg" />
+      <img src="../../assets/Credit.svg" />
       <div class="bb-text">Credit</div>
     </div>
     <div class="bb-cell">
-      <img src="../../../assets/Account.svg" />
+      <img src="../../assets/Account.svg" />
       <div class="bb-text">Profile</div>
     </div>
   </div>
 </template>
 
-<script>
-export default {
-  name: "BottomBand",
-};
-</script>
+<script></script>
 <style>
 .bb-parent.aspire-flex {
   position: fixed;

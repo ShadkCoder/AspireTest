@@ -3,32 +3,32 @@
     <div class="mp-topmenu aspire-flex">
       <div class="mp-block" @click="freezeClick">
         <div class="mpb-img">
-          <img src="../../../assets/Freeze-card.svg" />
+          <img src="../../assets/Freeze-card.svg" />
         </div>
         <div class="mpb-txt" v-if="getFreezeStatus">Freeze Card</div>
         <div class="mpb-txt" v-else>Unfreeze card</div>
       </div>
       <div class="mp-block">
         <div class="mpb-img">
-          <img src="../../../assets/Set-spend-limit.svg" />
+          <img src="../../assets/Set-spend-limit.svg" />
         </div>
         <div class="mpb-txt">Set spend limit</div>
       </div>
       <div class="mp-block">
         <div class="mpb-img">
-          <img src="../../../assets/GPay.svg" />
+          <img src="../../assets/GPay.svg" />
         </div>
         <div class="mpb-txt">Add to GPay</div>
       </div>
       <div class="mp-block">
         <div class="mpb-img">
-          <img src="../../../assets/Replace-card.svg" />
+          <img src="../../assets/Replace-card.svg" />
         </div>
         <div class="mpb-txt">Replace card</div>
       </div>
       <div class="mp-block" @click="toggleCancelModal">
         <div class="mpb-img">
-          <img src="../../../assets/Deactivate-card.svg" />
+          <img src="../../assets/Deactivate-card.svg" />
         </div>
         <div class="mpb-txt">Cancel card</div>
       </div>
@@ -36,44 +36,45 @@
     <div class="mp-widget">
       <div class="mp-tab aspire-flex">
         <div class="aspire-flex">
-          <img src="../../../assets/card-detail.svg" />
+          <img src="../../assets/card-detail.svg" />
           <div class="mpt-txt">Card details</div>
         </div>
-        <img src="../../../assets/down-arrow.svg" />
+        <img src="../../assets/down-arrow.svg" />
       </div>
       <div class="mp-tab aspire-flex">
         <div class="aspire-flex">
-          <img src="../../../assets/recent-transactions.svg" />
+          <img src="../../assets/recent-transactions.svg" />
           <div class="mpt-txt">Recent transactions</div>
         </div>
-        <img src="../../../assets/down-arrow.svg" />
+        <img src="../../assets/down-arrow.svg" />
       </div>
     </div>
   </div>
 </template>
 
-<script setup>
-import { mapGetters } from "vuex";
+<script setup lang="ts">
+import { onMounted, computed, ref } from "vue";
+import { useStore } from "vuex";
 
-export default {
-  name: "MoveMenu",
-  const freezeClick = () => {
-    if (!this.getFreezeStatus) {
-        this.$store.commit("removeFrozen", this.getPanel.index);
-      } else {
-        this.$store.commit("updateFrozen", this.getPanel.index);
-      }
-      this.$store.commit("toggleFreeze", !this.getFreezeStatus);
+const store = useStore();
+
+const getPanel = computed(() => {
+  return store.getters.getPanel;
+});
+const getFreezeStatus = computed(() => {
+  return store.getters.getFreezeStatus;
+});
+
+const freezeClick = () => {
+  if (!getFreezeStatus.value) {
+    store.commit("removeFrozen", getPanel.value.index);
+  } else {
+    store.commit("updateFrozen", getPanel.value.index);
   }
-  const toggleCancelModal = () => {
-    this.$store.commit("toggleCancel", true);
-  }
-  computed: {
-    ...mapGetters({
-      getPanel: "getPanel",
-      getFreezeStatus: "getFreezeStatus",
-    }),
-  },
+  store.commit("toggleFreeze", !getFreezeStatus.value);
+};
+const toggleCancelModal = () => {
+  store.commit("toggleCancel", true);
 };
 </script>
 <style>

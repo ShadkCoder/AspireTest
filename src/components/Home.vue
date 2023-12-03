@@ -15,10 +15,10 @@
       />
     </Flicking>
   </div>
-  <!-- <MoveMenu />
+  <MoveMenu />
   <AddModal v-if="getModalStatus" />
   <CancelModal v-if="getCancelStatus" />
-  <BottomBand /> -->
+  <BottomBand />
 </template>
 
 <script setup lang="ts">
@@ -27,30 +27,16 @@ import { onMounted, computed, ref } from "vue";
 import TopDetail from "./Mobile/TopDetail.vue";
 import Flicking from "@egjs/vue3-flicking";
 import CardDetail from "./Mobile/CardDetail.vue";
-/* import MoveMenu from "./Mobile/MoveMenu.vue";
+import MoveMenu from "./Mobile/MoveMenu.vue";
 import AddModal from "./Mobile/AddModal.vue";
 import CancelModal from "./Mobile/CancelModal.vue";
-import BottomBand from "./Mobile/BottomBand.vue"; */
+import BottomBand from "./Mobile/BottomBand.vue";
 
 import { mapGetters, useStore } from "vuex";
 
 const store = useStore();
 const flicking = ref(null);
 
-onMounted(() => {
-  store.commit("updatePanel", flicking.currentPanel);
-});
-
-const flickChange = () => {
-  store.commit("updatePanel", flicking.currentPanel);
-  let checkFreeze = getFrozen.includes(flicking.currentPanel.index);
-  store.commit("toggleFreeze", !checkFreeze);
-};
-
-const resetFlick = () => {
-  let panelTarget = flicking.panelCount - 1;
-  flicking.moveTo(panelTarget);
-};
 const getList = computed(() => {
   return store.getters.getList;
 });
@@ -63,6 +49,22 @@ const getModalStatus = computed(() => {
 const getCancelStatus = computed(() => {
   return store.getters.getCancelStatus;
 });
+
+onMounted(() => {
+  store.commit("updatePanel", flicking.value.currentPanel);
+});
+
+const flickChange = () => {
+  store.commit("updatePanel", flicking.value.currentPanel);
+  let checkFreeze = getFrozen.value.includes(flicking.value.currentPanel.index);
+  store.commit("toggleFreeze", !checkFreeze);
+};
+
+const resetFlick = () => {
+  let panelTarget = flicking.value.panelCount - 1;
+  flicking.value.moveTo(panelTarget);
+};
+
 /* computed: {
     ...mapGetters({
       getList: "getList",
