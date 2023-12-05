@@ -21,8 +21,12 @@
         <MoveMenu />
       </div>
     </div>
-    <AddModal v-if="getModalStatus" />
-    <CancelModal v-if="getCancelStatus" />
+    <Transition name="bounce">
+      <AddModal v-if="getModalStatus" />
+    </Transition>
+    <Transition name="bounce">
+      <CancelModal v-if="getCancelStatus" />
+    </Transition>
   </div>
 </template>
 
@@ -155,5 +159,19 @@ const resetFlick = () => {
 .rp-base .cm-parent {
   font-size: 20px;
   width: 35%;
+}
+.bounce-enter-active {
+  animation: bounce-in 0.5s;
+}
+.bounce-leave-active {
+  animation: bounce-in 0.5s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 </style>

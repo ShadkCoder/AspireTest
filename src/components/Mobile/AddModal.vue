@@ -8,6 +8,7 @@
         :class="{ cardname: true, errorname: errorname }"
       />
       <button class="addbtn" @click="addCard">Add Card</button>
+      <button class="cancelbtn" @click="closeAddModal">Close</button>
     </div>
   </div>
 </template>
@@ -39,6 +40,9 @@ const addCard = () => {
   } else {
     errorname.value = true;
   }
+};
+const closeAddModal = () => {
+  store.commit("toggleAddModal", false);
 };
 </script>
 <style>
@@ -86,6 +90,19 @@ const addCard = () => {
   border: 0px;
   margin-top: 25px;
   border-radius: 6px;
+}
+.cancelbtn {
+  width: 120px;
+  height: 40px;
+  cursor: pointer;
+  background-color: red;
+  outline: none;
+  color: #fff;
+  font-weight: 600;
+  border: 0px;
+  margin-top: 25px;
+  border-radius: 6px;
+  margin-left: 8px;
 }
 .cardname.errorname {
   border-color: red;

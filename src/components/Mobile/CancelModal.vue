@@ -24,6 +24,9 @@ const cancelCard = () => {
   store.commit("cancelCard");
   store.commit("toggleCancel", false);
 };
+const closeModal = () => {
+  store.commit("toggleCancel", false);
+};
 </script>
 <style>
 .am-overlay {

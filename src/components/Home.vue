@@ -17,8 +17,12 @@
       </Flicking>
     </div>
     <MoveMenu />
-    <AddModal v-if="getModalStatus" />
-    <CancelModal v-if="getCancelStatus" />
+    <Transition name="bounce">
+      <AddModal v-if="getModalStatus" />
+    </Transition>
+    <Transition name="bounce">
+      <CancelModal v-if="getCancelStatus" />
+    </Transition>
     <BottomBand />
   </div>
   <div class="desktop-base" v-else>
@@ -119,5 +123,19 @@ ul {
 .d-main.aspire-flex {
   width: 100%;
   height: 100vh;
+}
+.bounce-enter-active {
+  animation: bounce-in 0.5s;
+}
+.bounce-leave-active {
+  animation: bounce-in 0.5s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 </style>
