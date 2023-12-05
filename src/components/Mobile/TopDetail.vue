@@ -9,7 +9,7 @@
     </div>
     <div class="td-right">
       <div class="tdr-box">
-        <img src="../../assets/Logo.svg" class="td-logo" />
+        <img src="../../assets/logo.svg" class="td-logo" />
       </div>
       <div class="aspire-flex td-add" @click="addNew">
         <img src="../../assets/add.svg" class="ta-mobile" />
