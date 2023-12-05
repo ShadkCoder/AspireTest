@@ -2,7 +2,7 @@
   <div class="lp-base">
     <div class="lp-title aspire-flex">
       <div class="lp-icon">
-        <img src="../../assets/Logo.svg" />
+        <img src="../../assets/logo.svg" />
       </div>
       <div>aspire</div>
     </div>
