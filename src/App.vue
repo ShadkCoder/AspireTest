@@ -21,6 +21,5 @@ export default {
 body {
   margin: 0px;
   padding: 0px;
-  font-family: Open Sans;
 }
 </style>

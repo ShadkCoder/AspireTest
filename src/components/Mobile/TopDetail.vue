@@ -12,7 +12,8 @@
         <img src="../../assets/Logo.svg" class="td-logo" />
       </div>
       <div class="aspire-flex td-add" @click="addNew">
-        <img src="../../assets/add.svg" />
+        <img src="../../assets/add.svg" class="ta-mobile" />
+        <img src="../../assets/plus-white.svg" class="ta-desktop" />
         <span class="td-new">New card</span>
       </div>
     </div>
@@ -81,10 +82,15 @@ const addNew = () => {
 }
 .tdm-tab {
   margin-right: 12px;
+  opacity: 0.5;
 }
 .tdm-tab.tab-active {
   font-weight: 600;
   border-bottom: 2px solid #23cefd;
   padding-bottom: 4px;
+  opacity: 1;
+}
+.ta-desktop {
+  display: none;
 }
 </style>

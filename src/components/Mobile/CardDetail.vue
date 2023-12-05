@@ -12,7 +12,7 @@
         {{ cardInfo.idx.Name }}
       </div>
       <div class="cd-number">
-        {{ finalCardNo }}
+        {{ getSeparatedCardNo }}
       </div>
       <div class="aspire-flex cd-expiry">
         <div class="cd-thru">
@@ -43,11 +43,9 @@ const store = useStore();
 const finalCardNo = ref<string>("");
 const cardInfo = ref<Object>(props.details);
 
-onMounted(() => {
-  let dummyTxt = cardInfo.value.idx.cardNo;
-  finalCardNo.value = dummyTxt.replace(/.{4}/g, "$& ");
+const getSeparatedCardNo = computed(() => {
+  return cardInfo.value.idx.cardNo.replace(/.{4}/g, "$& ");
 });
-
 const getFrozen = computed(() => {
   return store.getters.getFrozen;
 });
@@ -128,7 +126,7 @@ const checkFrozen = computed(() => {
   font-weight: 600;
   position: absolute;
   right: 10px;
-  top: -25px;
+  top: -24px;
   border-top-left-radius: 4px;
   z-index: 20;
   border-top-right-radius: 4px;

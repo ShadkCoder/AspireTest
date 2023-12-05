@@ -38,7 +38,7 @@ const cancelCard = () => {
 .cm-parent {
   position: fixed;
   background-color: #fff;
-  box-shadow: 5px 10px 8px 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 5px 10px 8px 10px rgb(79 79 79 / 50%);
   z-index: 11;
   top: 50%;
   left: 50%;

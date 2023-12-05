@@ -1,24 +1,32 @@
 <template>
-  <div class="base-container">
-    <TopDetail />
-    <Flicking
-      :options="{ renderOnlyVisible: true }"
-      ref="flicking"
-      @changed="flickChange"
-      @panelChange="resetFlick"
-    >
-      <CardDetail
-        :details="{ idx }"
-        class="flicking-panel"
-        v-for="idx in getList"
-        :key="idx"
-      />
-    </Flicking>
+  <div class="mobile-base" v-if="isMobile()">
+    <div class="base-container">
+      <TopDetail />
+      <Flicking
+        :options="{ renderOnlyVisible: true }"
+        ref="flicking"
+        @changed="flickChange"
+        @panelChange="resetFlick"
+      >
+        <CardDetail
+          :details="{ idx }"
+          class="flicking-panel"
+          v-for="idx in getList"
+          :key="idx"
+        />
+      </Flicking>
+    </div>
+    <MoveMenu />
+    <AddModal v-if="getModalStatus" />
+    <CancelModal v-if="getCancelStatus" />
+    <BottomBand />
   </div>
-  <MoveMenu />
-  <AddModal v-if="getModalStatus" />
-  <CancelModal v-if="getCancelStatus" />
-  <BottomBand />
+  <div class="desktop-base" v-else>
+    <div class="d-main aspire-flex">
+      <LeftPanel />
+      <RightPanel />
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -31,6 +39,9 @@ import MoveMenu from "./Mobile/MoveMenu.vue";
 import AddModal from "./Mobile/AddModal.vue";
 import CancelModal from "./Mobile/CancelModal.vue";
 import BottomBand from "./Mobile/BottomBand.vue";
+
+import LeftPanel from "./Desktop/LeftPanel.vue";
+import RightPanel from "./Desktop/RightPanel.vue";
 
 import { mapGetters, useStore } from "vuex";
 
@@ -65,6 +76,17 @@ const resetFlick = () => {
   flicking.value.moveTo(panelTarget);
 };
 
+const isMobile = () => {
+  if (
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent
+    )
+  ) {
+    return true;
+  } else {
+    return false;
+  }
+};
 /* computed: {
     ...mapGetters({
       getList: "getList",
@@ -93,5 +115,9 @@ ul {
 }
 .aspire-flex {
   display: flex;
+}
+.d-main.aspire-flex {
+  width: 100%;
+  height: 100vh;
 }
 </style>

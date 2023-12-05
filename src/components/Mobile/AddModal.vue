@@ -1,6 +1,7 @@
 <template>
   <div class="am-overlay">
     <div class="am-parent">
+      <div class="am-title">Enter Card Name</div>
       <input
         v-model="cardname"
         placeholder="Card Name"
@@ -65,6 +66,11 @@ const addCard = () => {
   border-width: 0px 0px 1px 0px;
   font-size: 20px;
   outline: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  border-color: #bebaba;
+  border-width: 1px;
+  border-style: solid;
 }
 .cardname:focus {
   border-color: goldenrod;
@@ -83,5 +89,9 @@ const addCard = () => {
 }
 .cardname.errorname {
   border-color: red;
+}
+.am-title {
+  font-size: 20px;
+  margin-bottom: 15px;
 }
 </style>
