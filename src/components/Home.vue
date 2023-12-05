@@ -1,7 +1,7 @@
 <template>
   <div class="mobile-base" v-if="isMobile()">
     <div class="base-container">
-      <TopDetail />
+      <TopDetail> Account balance </TopDetail>
       <Flicking
         :options="{ renderOnlyVisible: true }"
         ref="flicking"

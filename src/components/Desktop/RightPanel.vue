@@ -1,6 +1,6 @@
 <template>
   <div class="rp-base">
-    <TopDetail />
+    <TopDetail> Available Balance </TopDetail>
     <div class="rp-shadowContainer aspire-flex">
       <div class="rp-alpha">
         <Flicking
@@ -84,6 +84,7 @@ const resetFlick = () => {
   color: #000;
   position: relative;
   left: -4px;
+  font-weight: 400;
 }
 .rp-base .tdl-amount {
   color: #000;

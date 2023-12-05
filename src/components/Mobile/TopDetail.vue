@@ -1,7 +1,7 @@
 <template>
   <div class="td-parent aspire-flex">
     <div class="td-left">
-      <div class="tdl-title">Account balance</div>
+      <div class="tdl-title"><slot></slot></div>
       <div class="aspire-flex tdl-inner">
         <div class="tdl-box">SS</div>
         <div class="tdl-amount">3,000</div>
@@ -41,6 +41,7 @@ const addNew = () => {
 }
 .tdl-title {
   font-size: 14px;
+  font-weight: 600;
 }
 .tdl-box {
   background-color: #01d167;
